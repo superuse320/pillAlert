@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
             message: 'Ingreso SIstema',
             buttons: ['Aceptar']
           });
-
+ 
           await alert.present();
          
           
