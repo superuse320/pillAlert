@@ -31,9 +31,12 @@ export class LoginPage implements OnInit {
 
   async ingresar() {
     var {correo, password} = this.formularioLogin.value;
+    
     this.loginservice.login(correo, password)
+    
       .subscribe(data => {
           console.log(data);
+          this.navCtrl.navigateRoot('tabs');
         }, async error => {
           const alert = await this.alertController.create({
             cssClass: 'my-custom-class',
@@ -44,8 +47,10 @@ export class LoginPage implements OnInit {
           });
 
           await alert.present();
-          this.navCtrl.navigateRoot('inicio');
+         
+          
         }
+        
       );
 
     // var usuario=JSON.parse(localStorage.getItem('usuario'));
