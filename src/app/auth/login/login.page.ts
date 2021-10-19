@@ -44,6 +44,7 @@ export class LoginPage implements OnInit {
           });
 
           await alert.present();
+          this.navCtrl.navigateRoot('inicio');
         }
       );
 
