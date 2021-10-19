@@ -26,14 +26,29 @@ export class LoginService {
       }),
     );
   }
-  register(data:any) {
+  register(id:String,name:String,email:String,username:String,emailverific:String){
     return this.http.post(this.url+ '/auth/register',
-      data
-    )
+    {id: id, name: name,email:email,username:username,emailverific:emailverific}
+  
+  ).pipe(
+    tap(token => {
+      localStorage.setItem('token',JSON.stringify(token));
+      this.token = token;
+      this.isLoggedIn = true;
+      return token;
+    }),
+  );
+  }
+  //register(data:any) {
+    //return this.http.post(this.url+ '/auth/register',
+    //  data
+//
+    //)
+
   }
 
 
 
-}
+
 
 

@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { alertController } from '@ionic/core';
-
+import { LoginService } from '../services/login.service';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -18,7 +18,9 @@ export class RegistroPage implements OnInit {
 
   formularioRegistro: FormGroup;
   
-  constructor(public fb: FormBuilder,
+  constructor(
+    protected loginservice: LoginService,
+    public fb: FormBuilder,
     public alertController: AlertController,
     public navCtrl:NavController) {
     this.formularioRegistro = this.fb.group({
@@ -33,39 +35,57 @@ export class RegistroPage implements OnInit {
   ngOnInit() {
   }
   async guardar(){
-    var f=this.formularioRegistro.value;
-    if(this.formularioRegistro.invalid){
+    var {id,nombre,email,username,emailverific}=this.formularioRegistro.value;
+    this.loginservice.register(id,nombre,email,username,emailverific)
+    .subscribe(data=>{
+     console.log(data);
+    }, async error=>{
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
-        header: 'Registro',
-        subHeader: 'Error al Guardar ',
-        message: 'Debes llenar todos los datos!.',
+        header: 'Datos Incorrectos',
+        
+        message: 'Ingreso SIstema',
         buttons: ['Aceptar']
       });
   
       await alert.present();
-
-    }else{
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        header: 'Registro',
-        message: 'Datos Registrados Correctamente',
-        buttons: ['Aceptar']
-      });
-  
-      await alert.present();
-    }
-    var usuario={
-      nombre:f.nombre,
-      apellido:f.apellido,
-      correo:f.correo,
-      password:f.password
-
-    }
-    localStorage.setItem('usuario',JSON.stringify(usuario));
-    this.navCtrl.navigateRoot('inicio');
-    localStorage.setItem('ingresado','true');
+    } 
+    ) 
   }
+  //async guardar(){
+  //  var f=this.formularioRegistro.value;
+  //  if(this.formularioRegistro.invalid){
+  //    const alert = await this.alertController.create({
+  //      cssClass: 'my-custom-class',
+  //      header: 'Registro',
+  //      subHeader: 'Error al Guardar ',
+  //      message: 'Debes llenar todos los datos!.',
+  //      buttons: ['Aceptar']
+  //    });
+  //
+  //    await alert.present();
+//
+  //  }else{
+  //    const alert = await this.alertController.create({
+  //      cssClass: 'my-custom-class',
+  //      header: 'Registro',
+  //      message: 'Datos Registrados Correctamente',
+  //      buttons: ['Aceptar']
+  //    });
+  //
+  //    await alert.present();
+  //  }
+  //  var usuario={
+  //    nombre:f.nombre,
+  //    apellido:f.apellido,
+  //    correo:f.correo,
+  //    password:f.password
+//
+  //  }
+  //  localStorage.setItem('usuario',JSON.stringify(usuario));
+  //  this.navCtrl.navigateRoot('inicio');
+  //  localStorage.setItem('ingresado','true');
+  //}
 
   
 
