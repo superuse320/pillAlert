@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/tabs/tabs-routing.module').then(m => m.TabsPageRoutingModule),
-    canActivate: [NoIngresadoGuard]
+    // canActivate: [NoIngresadoGuard]
   },
   {
     path: 'time',
