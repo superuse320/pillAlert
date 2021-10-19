@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+   <ion-buttons slot="start">
+    <ion-back-button defaultHref="../tab3"></ion-back-button>
+  </ion-buttons>
+    <ion-title>cita</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-list>
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+       <ion-datetime placeholder="Fecha de cita" id="fechaCita"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Hora</ion-label>
+       <ion-datetime display-format="HH:mm A" picker-format="HH:mm A" placeholder="introducir hora" id=""></ion-datetime>
+    </ion-item>
+    <ion-item>
+        <ion-input type="text" placeholder="Nombre del Doct@r" id="doctor"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input type="text" placeholder="lugar" id="lugar"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input type="text" placeholder="descripcion" id="descripcion"></ion-input>
+    </ion-item>
+</ion-list>
+</ion-content>

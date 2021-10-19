@@ -1,0 +1,53 @@
+<ion-header [translucent]="true" >
+    <ion-toolbar color="primary" >
+      <ion-title >
+        Perfil Paciente
+      </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Alarma</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-list>
+    <ion-item>
+        <ion-input type="text" placeholder="Nombre del paciente" name="nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input type="text" placeholder="Apellido" name="apellido"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input type="number" placeholder="edad" name="edad"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-input type="text" placeholder="Nombre del medicamento" name="medicamento" id="medicamento"></ion-input>
+    </ion-item>
+    
+      <ion-list-header>
+        <ion-label>
+         Tipo de medicamento
+        </ion-label>
+      </ion-list-header>
+
+    <ion-item>
+        <ion-select placeholder="Tipo">
+        <ion-select-option value="comprimidos">Comprimido(s)</ion-select-option>
+        <ion-select-option value="cucharada">Cucharada(s)</ion-select-option>
+        <ion-select-option value="capsula">Capsula(s)</ion-select-option>
+        <ion-select-option value="gotas">Gotas(s)</ion-select-option>
+        <ion-select-option value="gramo">Gramo(s)</ion-select-option>
+        <ion-select-option value="mililitro">Mililitro(s)</ion-select-option>
+        <ion-select-option value="miligrammo">Miligrammo(s)</ion-select-option>
+      </ion-select>
+       
+      
+    </ion-item>
+    
+  </ion-list>
+  <ion-button expand="block" [routerLink]="['/alarm']">Siguiente</ion-button>
+  
+</ion-content>

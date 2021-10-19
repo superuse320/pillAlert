@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/"></ion-back-button>
+  </ion-buttons>
+    <ion-title>Duracion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+<ion-list>
+      <ion-radio-group (ionChange)="change($event)" >
+        <ion-item>
+          <ion-label>fecha de inicio</ion-label>
+          <ion-datetime placeholder="hoy" id=""></ion-datetime>
+        </ion-item>
+         <ion-item>
+            <ion-label>sin Fecha limite</ion-label>
+            <ion-radio slot="end" color="primary" id="" value="sin limite" ></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Hasta x fecha</ion-label>
+            <ion-radio slot="end" color="primary" value="hasta"   id=""></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Para ciertos dias.</ion-label>
+            <ion-radio slot="end" color="primary" value="dias"></ion-radio>
+          </ion-item>
+      </ion-radio-group> 
+      {{estado}}   
+
+    <ion-radio-group *ngIf="estado=='hasta'"  (ionChange)="change($event)" >
+        <ion-item>
+          <ion-label>fecha de inicio</ion-label>
+          <ion-datetime placeholder="hoy" id=""></ion-datetime>
+        </ion-item>
+
+    </ion-radio-group >
+     
+</ion-list> 
+</form>
+</ion-content>
