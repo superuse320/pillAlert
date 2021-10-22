@@ -39,6 +39,7 @@ export class RegistroPage implements OnInit {
     this.loginservice.register(email,name,username,password)
     .subscribe(data=>{
      console.log(data);
+     this.navCtrl.navigateRoot('tabs');
     }, async error=>{
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
