@@ -28,10 +28,10 @@ export class LoginService {
       }),
     );
   }
-  register(id: string,nombre: string,email: string,username: string,emailverific: string){ 
+  register(email: string,name: string,username: string,password: string){ 
   //register(data: any) {
     return this.http.post(this.url + '/auth/register',
-    {id,nombre,email,username,emailverific}
+    {email,name,username,password}
     ).pipe(
       tap(data => {
         localStorage.setItem('token', JSON.stringify(data));
