@@ -35,8 +35,8 @@ export class RegistroPage implements OnInit {
   ngOnInit() {
   }
   async guardar(){
-    var {id,nombre,email,username,emailverific}=this.formularioRegistro.value;
-    this.loginservice.register(id,nombre,email,username,emailverific)
+    var {email,name,username,password}=this.formularioRegistro.value;
+    this.loginservice.register(email,name,username,password)
     .subscribe(data=>{
      console.log(data);
     }, async error=>{
