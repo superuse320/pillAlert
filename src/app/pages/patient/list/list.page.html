@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pacientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+<!--  <ion-list id="list"></ion-list>-->
+ 
+ <!-- <ion-infinite-scroll threshold="100px" id="infinite-scroll">
+    <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>-->
+  
+<!--  <ion-fab horizontal="end" vertical="bottom" slot="fixed" edge>
+    <ion-fab-button (click)='presentModal()'>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>-->
+  
+  <!--  represcar-->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="chevron-down-circle-outline"
+            pullingText="Deslice para refrescar"
+            refreshingSpinner="circular"
+            refreshingText="Cargando...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-searchbar [slot]="(isFixed)?'fixed':''" showCancelButton="focus" type='ios' [animated]='true'
+                 (ionChange)='changeSearch($event)' placeholder='Buscar...'></ion-searchbar>
+  
+  <!-- listar socio -->
+  <ion-list style='margin-top: 50px' lines="full" *ngIf='paginated?.data.length>0 else noData'>
+    <ion-item *ngFor='let evento of patients' class='animated fadeIn fast'>
+      <ion-label>
+        {{evento.nombres}}
+      </ion-label>
+    <!--  <ion-icon [name]="(evento.estado.nombre !=='FALTA'? 'checkmark-done-circle ': 'checkmark-circle')"
+                slot="end" color="{{ (evento.estado.nombre !=='FALTA'? 'primary': 'danger')}}"
+      ></ion-icon>-->
+    </ion-item>
+  </ion-list>
+  
+  <ng-template #noData>
+    <br><br><br>
+    <ion-item>
+      <ion-text color='danger'> Sin datos</ion-text>
+    </ion-item>
+  </ng-template>
+  
+  <!--  infinite scroll -->
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadDataNext($event)">
+    <ion-infinite-scroll-content
+            loadingSpinner="crescent"
+            loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="success">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="start">
+      <ion-fab-button color="light">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="light">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

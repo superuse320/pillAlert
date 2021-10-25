@@ -1,5 +1,7 @@
 {
-  "name": "pillAlert",
-  "integrations": {},
+  "name": "pildoras",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

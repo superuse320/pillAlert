@@ -1,56 +1,33 @@
-import {NgModule} from '@angular/core';
-import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {NoIngresadoGuard} from './guards/no-ingresado.guard';
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },
   {
     path: 'login',
-    loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule),
-    canActivate: [NoIngresadoGuard]
+    loadChildren: () => import('./authentications/login/login.module').then(m => m.LoginPageModule)
   },
   {
-    path: 'registro',
-    loadChildren: () => import('./auth/registro/registro.module').then(m => m.RegistroPageModule),
-    canActivate: [NoIngresadoGuard]
+    path: 'register',
+    loadChildren: () => import('./authentications/registro/registro.module').then(m => m.RegistroPageModule)
   },
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
+  // },
+
+  // {
+  //   path: 'home',
+  //   loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  // },
   {
     path: '',
-    loadChildren: () => import('./pages/tabs/tabs-routing.module').then(m => m.TabsPageRoutingModule),
-    // canActivate: [NoIngresadoGuard]
-  },
-  {
-    path: 'time',
-    loadChildren: () => import('./pages/time/time.module').then(m => m.TimePageModule)
-  },
-  {
-    path: 'alarm',
-    loadChildren: () => import('./pages/alarm/alarm.module').then(m => m.AlarmPageModule)
-  },
-  {
-    path: 'duracion',
-    loadChildren: () => import('./pages/duracion/duracion.module').then(m => m.DuracionPageModule)
-  },
-  {
-    path: 'frecuencia',
-    loadChildren: () => import('./pages/frecuencia/frecuencia.module').then(m => m.FrecuenciaPageModule)
-  },
-  {
-    path: 'cita',
-    loadChildren: () => import('./pages/cita/cita.module').then(m => m.CitaPageModule)
-  },
+    loadChildren: () => import('./pages/patient/patient.module').then( m => m.PatientModule)
+  }
 ];
-
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules})
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
