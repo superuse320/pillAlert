@@ -31,4 +31,9 @@ export class PatientService {
   netxPaginate(next_page_url: any) {
     return this.http.get<Paginate>(next_page_url);
   }
+
+  create(value: any) {
+    const data = {...value, user_id: 1};
+    return this.http.post<Paginate>(this.url, data);
+  }
 }

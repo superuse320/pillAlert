@@ -4,33 +4,29 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'patient',
     component: TabsPage,
     children: [
       {
         path: '',
+        redirectTo: '/patient/list',
+        pathMatch: 'full'
+      },
+      {
+        path: 'list',
         loadChildren: () => import('../list/list.module').then(m => m.ListPageModule)
       },
       {
         path: 'create',
         loadChildren: () => import('../create/create.module').then( m => m.CreatePageModule)
       },
-      {
-        path: 'list',
-        loadChildren: () => import('../list/list.module').then(m => m.ListPageModule)
-      },
-      // {
-      //   path: '',
-      //   redirectTo: '/patient/list',
-      //   pathMatch: 'full'
-      // }
     ]
   },
-  // {
-  //   path: '',
-  //   redirectTo: '/patient/list',
-  //   pathMatch: 'full'
-  // }
+  {
+    path: '',
+    redirectTo: '/patient/list',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({

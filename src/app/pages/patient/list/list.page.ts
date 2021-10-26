@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonInfiniteScroll} from '@ionic/angular/directives/proxies';
+import {IonInfiniteScroll} from '@ionic/angular';
 import {PatientService} from '../../../services/patient.service';
-import {Paginate} from "../../../models/paginate.model";
-import {finalize} from "rxjs/operators";
+import {Paginate} from '../../../models/paginate.model';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -18,7 +18,7 @@ export class ListPage implements OnInit {
   patients: any[] = [];
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
-  // @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   constructor(protected patientService: PatientService) {
   }
 
@@ -41,9 +41,9 @@ export class ListPage implements OnInit {
     this.refres = event; // todo no funciona
     this.isFixed = false;
     setTimeout(() => {
-      // this.getEvento();
+      this.list();
       // this.list('');
-      // event.target.complete();
+      event.target.complete();
 
       // this.socios = [];
     }, 2000);
@@ -52,6 +52,7 @@ export class ListPage implements OnInit {
   loadDataNext(event: any) {
 
     console.log('cargando');
+    console.log(this.paginated.links.next);
     if (this.paginated.links.next) {
       this.patientService.netxPaginate(this.paginated.links.next)
         .pipe(finalize(() => {
@@ -59,11 +60,12 @@ export class ListPage implements OnInit {
         }))
         .subscribe(res => {
           console.log('load', res);
+          this.paginated = res;
           this.patients.push(...res.data);
         });
     } else {
       event.target.complete();
-      // this.infiniteScroll.disabled = true;
+      this.infiniteScroll.disabled = true;
       return;
     }
   }

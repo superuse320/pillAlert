@@ -1,9 +1,41 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>create</ion-title>
+    <ion-title>Nuevo</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="/patient/list"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
+  
+  <form [formGroup]="formGroup" (ngSubmit)="save(formGroup.value)" >
+    <ion-item>
+      <ion-label position="floating">Nombres</ion-label>
+      <ion-input formControlName="nombres"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Apellidos</ion-label>
+      <ion-input formControlName="apellidos"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input formControlName="direccion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"># celular</ion-label>
+      <ion-input formControlName="celular" type='number'></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label >Fecha de Nacimiento</ion-label>
+      <ion-datetime value="1999-02-19" placeholder="Seleccionar Fecha"
+                     (ionChange)='date($event)'
+                    displayFormat="D-MMM-YYYY"  ></ion-datetime>
+    </ion-item>
+
+    <ion-button expand="block"  type="submit"  >Guardar</ion-button>
+
+  </form>
 
 </ion-content>

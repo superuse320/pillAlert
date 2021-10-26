@@ -35,7 +35,7 @@
   <ion-list style='margin-top: 50px' lines="full" *ngIf='paginated?.data.length>0 else noData'>
     <ion-item *ngFor='let evento of patients' class='animated fadeIn fast'>
       <ion-label>
-        {{evento.nombres}}
+        {{evento.nombres + ' ' + evento.apellidos }}
       </ion-label>
     <!--  <ion-icon [name]="(evento.estado.nombre !=='FALTA'? 'checkmark-done-circle ': 'checkmark-circle')"
                 slot="end" color="{{ (evento.estado.nombre !=='FALTA'? 'primary': 'danger')}}"
@@ -59,10 +59,10 @@
   </ion-infinite-scroll>
   
   <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button color="success">
+    <ion-fab-button color="success" routerLink='../create'>
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-    <ion-fab-list side="start">
+<!--    <ion-fab-list side="start">
       <ion-fab-button color="light">
         <ion-icon name="logo-facebook"></ion-icon>
       </ion-fab-button>
@@ -72,7 +72,7 @@
       <ion-fab-button color="light">
         <ion-icon name="logo-vimeo"></ion-icon>
       </ion-fab-button>
-    </ion-fab-list>
+    </ion-fab-list>-->
   </ion-fab>
 
 </ion-content>
